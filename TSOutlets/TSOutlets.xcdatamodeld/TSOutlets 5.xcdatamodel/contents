@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Article" syncable="YES">
+        <attribute name="applaud" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="checked" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="click" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customField" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dir" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dirID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="display" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="files" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modifyTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recommend" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="relatedArticle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Config" syncable="YES">
+        <attribute name="guideSign" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ifLatestVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ExchangeHistory" syncable="YES">
+        <attribute name="exchangeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exchangeTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exchangeType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasExchange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDeal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listPicUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="outDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="outType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qrCodeUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ExchangeList" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="carouselArray" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="display" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exchangeId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listPicUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needOfflinePoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="needOnlinePoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Feedback" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="feedbackID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reply" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replyDate" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="History" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="historyid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Log" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="operation" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Member" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="area" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exchangePlace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="exchangeTelephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gamewheelBonus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isBind" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isLogin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlineHistory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlineName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlineNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlinePhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlinePoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlinePrivilege" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="offlineTotalPoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlineHistory" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="onlineLevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlineNextLevel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlineNextPoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlineNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlinePoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="onlinePrivilege" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="onlineTotalPoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="portrait" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signinDay" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Message" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="OfflineHistory" syncable="YES">
+        <attribute name="tradeNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradePlace" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradePoint" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradePrice" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tradeTime" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ServiceUrl" syncable="YES">
+        <attribute name="faqurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="introurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trafficurl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Shop" syncable="YES">
+        <attribute name="carouselArray" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coordinateX" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coordinateY" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="display" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favorite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="favoriteSync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="floor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="introduction" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationArea" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shopID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tableSet" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Article" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="Config" positionX="-63" positionY="81" width="128" height="105"/>
+        <element name="ExchangeHistory" positionX="-54" positionY="144" width="128" height="210"/>
+        <element name="ExchangeList" positionX="-45" positionY="144" width="128" height="30"/>
+        <element name="Feedback" positionX="-45" positionY="144" width="128" height="120"/>
+        <element name="History" positionX="-54" positionY="135" width="128" height="120"/>
+        <element name="Image" positionX="-54" positionY="90" width="128" height="73"/>
+        <element name="Log" positionX="-45" positionY="144" width="128" height="75"/>
+        <element name="Member" positionX="-54" positionY="81" width="128" height="600"/>
+        <element name="Message" positionX="-54" positionY="135" width="128" height="120"/>
+        <element name="OfflineHistory" positionX="-54" positionY="135" width="128" height="120"/>
+        <element name="ServiceUrl" positionX="-45" positionY="180" width="128" height="88"/>
+        <element name="Shop" positionX="-54" positionY="135" width="128" height="315"/>
+    </elements>
+</model>
