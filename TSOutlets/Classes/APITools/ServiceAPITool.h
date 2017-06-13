@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ServiceAPITool : NSObject<NSURLConnectionDelegate>
+@interface ServiceAPITool : NSObject<NSURLConnectionDelegate,NSURLSessionDelegate>
 {
     NSMutableData* postFeedbackData;
     NSMutableData* getFeedbackData;
@@ -16,12 +16,12 @@
     NSMutableData* messageData;
     NSMutableData* messageCountData;
     
-    NSURLConnection* postFeedbackConnection;
-    NSURLConnection* getFeedbackConnection;
-    NSURLConnection* replyConnection;
-    NSURLConnection* messageConnection;
-    NSURLConnection* messageCountConnection;
-    NSURLConnection* sendfeedbackConnection;
+    NSURLSession* postFeedbackConnection;
+    NSURLSession* getFeedbackConnection;
+    NSURLSession* replyConnection;
+    NSURLSession* messageConnection;
+    NSURLSession* messageCountConnection;
+    NSURLSession* sendfeedbackConnection;
 }
 
 #pragma mark - network

@@ -10,12 +10,17 @@
 
 @protocol BasicInfoAPIToolDelegate;
 
-@interface BasicInfoAPITool : NSObject<NSURLConnectionDelegate>
+@interface BasicInfoAPITool : NSObject<NSURLConnectionDelegate,NSURLSessionDelegate>
 {
     NSMutableData* getBasicInfoData;
     NSMutableData* getBasicInfoZipData;
     NSMutableData* updateBasicInfoData;
     NSMutableData* checkVersionData;
+    
+    NSURLSession* getBasicInfoSession;
+    NSURLSession* getBasicInfoZipSession;
+    NSURLSession* updateBasicInfoSession;
+    NSURLSession* checkVersionSession;
     
     NSURLConnection* getBasicInfoConnection;
     NSURLConnection* getBasicInfoZipConnection;

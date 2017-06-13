@@ -27,10 +27,11 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    postFeedbackConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    postFeedbackConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [postFeedbackConnection dataTaskWithRequest:request];
+    [dataTask resume];
     
-    if (postFeedbackConnection) {
-    }
 }
 
 - (void)getAllFeedback {
@@ -40,10 +41,10 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    getFeedbackConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    
-    if (getFeedbackConnection) {
-    }
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    getFeedbackConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [getFeedbackConnection dataTaskWithRequest:request];
+    [dataTask resume];
 }
 
 - (void)autoReplay:(NSString *)question {
@@ -53,10 +54,11 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    replyConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    replyConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [replyConnection dataTaskWithRequest:request];
+    [dataTask resume];
     
-    if (replyConnection) {
-    }
 }
 
 
@@ -68,10 +70,11 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    messageConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    messageConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [messageConnection dataTaskWithRequest:request];
+    [dataTask resume];
     
-    if (messageConnection) {
-    }
 }
 
 - (void)getAllMessageCount {
@@ -81,10 +84,11 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    messageCountConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    
-    if (messageCountConnection) {
-    }
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    messageCountConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [messageCountConnection dataTaskWithRequest:request];
+    [dataTask resume];
+
 }
 
 - (void)sendfeedback:(NSString *)text {
@@ -94,14 +98,102 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc]initWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
     [request setHTTPMethod:@"GET"];
     
-    sendfeedbackConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldShowTip" object:@"您的反馈已发送！"];
-    if (sendfeedbackConnection) {
+    NSURLSessionConfiguration *defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+    sendfeedbackConnection = [NSURLSession sessionWithConfiguration: defaultConfigObject delegate: self delegateQueue: [NSOperationQueue mainQueue]];
+    NSURLSessionDataTask * dataTask = [sendfeedbackConnection dataTaskWithRequest:request];
+    [dataTask resume];
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+didReceiveResponse:(NSURLResponse *)response
+ completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+    if ([session isEqual:postFeedbackConnection]) { postFeedbackData = [NSMutableData data]; }
+    
+    if ([session isEqual:getFeedbackConnection]) { getFeedbackData = [NSMutableData data]; }
+    
+    if ([session isEqual:replyConnection]) { replyData = [NSMutableData data]; }
+    
+    if ([session isEqual:messageConnection]) { messageData = [NSMutableData data]; }
+    
+    if ([session isEqual:messageCountConnection]) { messageCountData = [NSMutableData data]; }
+    completionHandler(NSURLSessionResponseAllow);
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask
+    didReceiveData:(NSData *)data
+{
+    if ([session isEqual:postFeedbackConnection]) { [postFeedbackData appendData:data]; }
+    
+    if ([session isEqual:getFeedbackConnection]) { [getFeedbackData appendData:data]; }
+    
+    if ([session isEqual:replyConnection]) { [replyData appendData:data]; }
+    
+    if ([session isEqual:messageConnection]) { [messageData appendData:data]; }
+    
+    if ([session isEqual:messageCountConnection]) { [messageCountData appendData:data]; }
+    
+}
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(NSError *)error
+{
+    if ([session isEqual:postFeedbackConnection]) {
+        if(error == nil)
+        {
+            NSDictionary *resDic = [JSONHelper dataToDictionary:postFeedbackData];
+            if (resDic) {
+                [self getAllFeedback];
+            }
+        }
+    }
+    
+    if ([session isEqual:getFeedbackConnection]) {
+        if(error == nil)
+        {
+            NSDictionary *resDic = [JSONHelper dataToDictionary:getFeedbackData];
+            if (resDic) {
+                [self addFeedback:[FeedbackEntity QA2Array:resDic[@"QA"]]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"getFeedbackList" object:[FeedbackEntity QA2Array:resDic[@"QA"]]];
+            }
+        }
+    }
+    
+    if ([session isEqual:replyConnection]) {
+        if(error == nil)
+        {
+            NSDictionary *resDic = [JSONHelper dataToDictionary:replyData];
+            if (resDic) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"getIntelligentReply" object:resDic[@"reply"]];
+            }
+        }
+    }
+    
+    if ([session isEqual:messageConnection]) {
+        if(error == nil)
+        {
+            NSDictionary *resDic = [JSONHelper dataToDictionary:messageData];
+            if (resDic) {
+                if ([self updateMessage:[MessageEntity information2MessageArray:resDic[@"information"]]]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getMessageList" object:0];
+                }
+            }
+
+        }
+    }
+    
+    if ([session isEqual:messageCountConnection]) {
+        if(error == nil)
+        {
+            NSDictionary *resDic = [JSONHelper dataToDictionary:messageCountData];
+            if (resDic) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"getMessageList" object:resDic[@"unread"]];
+            }
+        }
     }
 }
 
 #pragma mark - Connection Delegate Method
-
+/*
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([connection isEqual:postFeedbackConnection]) { postFeedbackData = [NSMutableData data]; }
     
@@ -172,7 +264,7 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^(){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldShowTip" object:@"网络异常！请检查网络连接状况！"];
     }];
-}
+}*/
 
 #pragma mark - local
 - (NSArray *)getLoaclFeedback {

@@ -11,7 +11,7 @@
 #import "ConfigCoreDataHelper.h"
 #import "BrandCoreDataHelper.h"
 
-@interface MemberAPITool : NSObject<NSURLConnectionDelegate>
+@interface MemberAPITool : NSObject<NSURLConnectionDelegate,NSURLSessionDelegate>
 {
     NSMutableData* loginData;
     NSMutableData* BindData;
@@ -40,32 +40,34 @@
     NSMutableData* exchangeData;
     NSMutableData* exchangeInfoData;
     
-    NSURLConnection* loginConnection;
-    NSURLConnection* BindConnection;
-    NSURLConnection* confirmConnection;
-    NSURLConnection* uploadPortraitConnection;
-    NSURLConnection* uploadInfoConnection;
-    NSURLConnection* verificationConnection;
-    NSURLConnection* registerConnection;
-    NSURLConnection* resetConnection;
-    NSURLConnection* deviceConnection;
-    NSURLConnection* wheellotteryConnection;
+    NSURLSession* loginConnection;
+    NSURLSession* BindConnection;
+    NSURLSession* confirmConnection;
+    NSURLSession* uploadPortraitConnection;
+    NSURLSession* uploadInfoConnection;
+    NSURLSession* verificationConnection;
+    NSURLSession* registerConnection;
+    NSURLSession* resetConnection;
+    NSURLSession* deviceConnection;
+    NSURLSession* wheellotteryConnection;
     
-    NSURLConnection* setFaveriteConnection;
-    NSURLConnection* getOnlinePointConnection;
-    NSURLConnection* signinConnection;
-    NSURLConnection* getFaveriteConnection;
+    NSURLSession* setFaveriteConnection;
+    NSURLSession* getOnlinePointConnection;
+    NSURLSession* signinConnection;
+    NSURLSession* getFaveriteConnection;
     
-    NSURLConnection* onlinePointsConnection;
-    NSURLConnection* onlineHistoryConnection;
-    NSURLConnection* offlinePointsConnection;
-    NSURLConnection* offlineHistoryConnection;
-    NSURLConnection* offlineBindConnection;
+    NSURLSession* onlinePointsConnection;
+    NSURLSession* onlineHistoryConnection;
+    NSURLSession* offlinePointsConnection;
+    NSURLSession* offlineHistoryConnection;
+    NSURLSession* offlineBindConnection;
     
-    NSURLConnection* exchangeListConnection;
-    NSURLConnection* exchangeHistoryConnection;
-    NSURLConnection* exchangeConnection;
-    NSURLConnection* exchangeInfoConnection;
+    NSURLSession* exchangeListConnection;
+    NSURLSession* exchangeHistoryConnection;
+    NSURLSession* exchangeConnection;
+    NSURLSession* exchangeInfoConnection;
+    
+    
 }
 @property (strong,nonatomic) MemberEntity*      memberEntity;
 
